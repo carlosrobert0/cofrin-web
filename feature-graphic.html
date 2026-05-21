@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cofrin · Feature Graphic 1024×500</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        background: #0c0e22;
+        font-family: 'Inter', system-ui, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+      }
+
+      /* === CANVAS 1024×500 — capture este elemento === */
+      .canvas {
+        width: 1024px;
+        height: 500px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 85% 30%, rgba(141, 162, 235, 0.35) 0%, transparent 45%),
+          radial-gradient(circle at 15% 80%, rgba(61, 68, 205, 0.55) 0%, transparent 50%),
+          linear-gradient(135deg, #3d44cd 0%, #1f2267 100%);
+        color: white;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .blob-1 {
+        width: 380px;
+        height: 380px;
+        background: #5d63f0;
+        top: -120px;
+        right: -80px;
+      }
+      .blob-2 {
+        width: 320px;
+        height: 320px;
+        background: #1f2267;
+        bottom: -100px;
+        left: -60px;
+      }
+
+      .content {
+        position: relative;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 0 56px;
+        z-index: 2;
+      }
+
+      /* === LADO ESQUERDO === */
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 4px;
+      }
+      .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        background: #3d44cd;
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+      .brand-name {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      h1 {
+        font-size: 46px;
+        line-height: 1.05;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        max-width: 460px;
+      }
+      h1 .accent {
+        color: #b1bbf9;
+      }
+
+      .sub {
+        font-size: 16px;
+        color: #d8ddfc;
+        max-width: 420px;
+        line-height: 1.45;
+        margin-top: 6px;
+      }
+
+      .pills {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.13);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .pill svg {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+      }
+
+      /* === LADO DIREITO — TRÊS PHONES === */
+      .right {
+        position: relative;
+        height: 100%;
+      }
+
+      .phone {
+        position: absolute;
+        width: 200px;
+        height: 430px;
+        background: #0c0e22;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+        border-radius: 30px;
+        padding: 6px;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      .phone::before {
+        content: '';
+        position: absolute;
+        top: 11px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 56px;
+        height: 14px;
+        background: #000;
+        border-radius: 999px;
+        z-index: 3;
+      }
+      .phone img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 24px;
+        object-fit: cover;
+        object-position: top center;
+        image-rendering: -webkit-optimize-contrast;
+      }
+
+      .phone-1 {
+        top: 50%;
+        right: 230px;
+        transform: translate(0, -50%) rotate(-5deg) translateZ(0);
+        z-index: 1;
+      }
+      .phone-2 {
+        top: 50%;
+        right: 90px;
+        transform: translate(0, -50%) translateZ(0);
+        z-index: 3;
+      }
+      .phone-3 {
+        top: 50%;
+        right: -50px;
+        transform: translate(0, -50%) rotate(5deg) translateZ(0);
+        z-index: 2;
+      }
+
+      /* === INSTRUÇÕES === */
+      .help {
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.06);
+        color: #b1bbf9;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-size: 13px;
+        max-width: 760px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .help code {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas" id="canvas">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+
+      <div class="content">
+        <!-- ESQUERDA -->
+        <div class="left">
+          <div class="brand">
+            <div class="logo">
+              <img src="public/icon.png" alt="Cofrin" />
+            </div>
+            <span class="brand-name">Cofrin</span>
+          </div>
+
+          <h1>
+            Suas metas financeiras,<br />
+            <span class="accent">sem complicação.</span>
+          </h1>
+
+          <p class="sub">
+            Controle pessoal em português, 100% offline. Sem cadastro, sem servidor, sem propaganda.
+          </p>
+
+          <div class="pills">
+            <span class="pill">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l5 5 9-11" stroke="#4AE124" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              100% local
+            </span>
+            <span class="pill">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l5 5 9-11" stroke="#4AE124" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Sem cadastro
+            </span>
+            <span class="pill">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l5 5 9-11" stroke="#4AE124" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Pt-BR
+            </span>
+          </div>
+        </div>
+
+        <!-- DIREITA - 3 PHONES -->
+        <div class="right">
+          <div class="phone phone-1">
+            <img src="public/screen-achievements.png" alt="Conquistas" />
+          </div>
+          <div class="phone phone-2">
+            <img src="public/screen-home.png" alt="Home" />
+          </div>
+          <div class="phone phone-3">
+            <img src="public/screen-goal.png" alt="Meta" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="help">
+      Salve as 3 screenshots em <code>public/</code> como
+      <code>screen-home.png</code>, <code>screen-goal.png</code> e <code>screen-achievements.png</code>.
+      Depois: DevTools (<code>F12</code>) → <code>Ctrl+Shift+P</code> →
+      <code>Capture node screenshot</code> → selecione <code>&lt;div id="canvas"&gt;</code>. PNG sai 1024×500.
+    </div>
+  </body>
+</html>
